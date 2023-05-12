@@ -78,6 +78,34 @@ import result from './el-result'
 import skeletonItem from './el-skeleton-item'
 import skeleton from './el-skeleton'
 
+import ContentPage from './ContentPage'
+import FormBox from './FormBox'
+import FormItem from './FormItem'
+import FormModule from './FormModule'
+import NumberInput from './NumberInput'
+import SearchItem from './SearchItem'
+import TableColumn from './TableColumn'
+import TheBasicSearch from './TheBasicSearch'
+import TheBasicTable from './TheBasicTable'
+import TheForm from './TheForm'
+import TheSearch from './TheSearch'
+import TheTable from './TheTable'
+
+const components = {
+  'content-page': ContentPage,
+  'form-box': FormBox,
+  'form-item': FormItem,
+  'form-module': FormModule,
+  'number-input': NumberInput,
+  'search-item': SearchItem,
+  'table-column': TableColumn,
+  'the-basic-search': TheBasicSearch,
+  'the-basic-table': TheBasicTable,
+  'the-form': TheForm,
+  'the-search': TheSearch,
+  'the-table': TheTable
+}
+
 export default {
   'el-alert': elalert,
   'el-aside': elaside,
@@ -157,5 +185,6 @@ export default {
   'el-empty': empty,
   'el-result': result,
   'el-skeleton-item': skeletonItem,
-  'el-skeleton': skeleton
+  'el-skeleton': skeleton,
+  ...components
 }

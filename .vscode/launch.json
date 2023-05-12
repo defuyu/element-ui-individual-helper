@@ -29,6 +29,15 @@
 				"${workspaceFolder}/out/test/**/*.js"
 			],
 			"preLaunchTask": "${defaultBuildTask}"
-		}
+		},
+		// {
+		// 	"name": "Debug Node.js File",
+		// 	"type": "node",
+		// 	"request": "launch",
+		// 	"program": "${workspaceFolder}/src/document/document-builder.js",
+		// 	"runtimeExecutable": "node",
+		// 	"args": ["../docs", "--inspect"],
+		// 	"console": "integratedTerminal"
+		//   }
 	]
 }

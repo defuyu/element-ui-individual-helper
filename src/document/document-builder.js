@@ -8,13 +8,13 @@ const build = (dir) => {
   docs.forEach((doc) => {
     if (/\.md$/.test(doc)) {
       const document = {}
-      // const outName = doc.substr(0, doc.length - 3) + ".ts";
+      const outName = doc.substr(0, doc.length - 3);
       const inStream = fs.createReadStream(path.resolve(dir, doc))
       // const outStream = fs.createWriteStream(path.resolve(__dirname, outName));
       const readLine = readline.createInterface(inStream)
       let skip = 0
       let flag = null
-      let filename = ''
+      let filename = outName
       readLine.on('line', (line) => {
         if (line.trim().length === 0) {
           // 跳过空行;
@@ -28,46 +28,26 @@ const build = (dir) => {
           return
         }
         if (line.includes('Attributes')) {
-          filename = 'el-' + line.replace(/#/g, '').replace('Attributes', '').trim().replace(/ /g, '-').toLocaleLowerCase()
-          if (filename.length === 3) {
-            filename = 'el-' + doc.substr(0, doc.length - 3)
-          }
           flag = 'attributes'
           skip = 2
           return
         }
-        if (line.includes('Events') && line.includes('###')) {
-          filename = 'el-' + line.replace(/#/g, '').replace('Events', '').trim().replace(/ /g, '-').toLocaleLowerCase()
-          if (filename.length === 3) {
-            filename = 'el-' + doc.substr(0, doc.length - 3)
-          }
+        if (line.includes('Events')) {
           flag = 'events'
           skip = 2
           return
         }
         if (line.includes('Methods')) {
-          filename = 'el-' + line.replace(/#/g, '').replace('Methods', '').trim().replace(/ /g, '-').toLocaleLowerCase()
-          if (filename.length === 3) {
-            filename = 'el-' + doc.substr(0, doc.length - 3)
-          }
           flag = 'methods'
           skip = 2
           return
         }
         if (line.includes('Scoped Slot')) {
-          filename = 'el-' + line.replace(/#/g, '').replace('Scoped Slot', '').trim().replace(/ /g, '-').toLocaleLowerCase()
-          if (filename.length === 3) {
-            filename = 'el-' + doc.substr(0, doc.length - 3)
-          }
           flag = 'scopedSlots'
           skip = 2
           return
         }
         if (line.includes('Slot')) {
-          filename = 'el-' + line.replace(/#/g, '').replace('Slots', '').replace('Slot', '').trim().replace(/ /g, '-').toLocaleLowerCase()
-          if (filename.length === 3) {
-            filename = 'el-' + doc.substr(0, doc.length - 3)
-          }
           flag = 'slots'
           skip = 2
           return
